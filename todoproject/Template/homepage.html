@@ -1,0 +1,75 @@
+{% extends 'master.html' %}
+
+{% block body %}
+<h1>Task Status Summary</h1>
+<style>
+.card-container {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.status-card {
+  width: 200px;
+  padding: 1.5rem;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.status-card:hover {
+  transform: scale(1.05);
+}
+
+.status-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.status-card .count {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+/* Color themes */
+.total {
+  background-color: #616161;
+}
+.pending {
+  background-color: #fbc02d;
+}
+.inprogress {
+  background-color: #039be5;
+}
+.completed {
+  background-color: #43a047;
+}
+
+</style>
+<div class="card-container">
+  <div class="status-card total">
+    <h3>Total Tasks</h3>
+    <p class="count">{{ data.count }}</p>
+  </div>
+
+  <div class="status-card pending">
+    <h3>Pending Tasks</h3>
+    <p class="count">{{ pending.count }}</p>
+  </div>
+
+  <div class="status-card inprogress">
+    <h3>In Progress</h3>
+    <p class="count">{{ inprogress.count }}</p>
+  </div>
+
+  <div class="status-card completed">
+    <h3>Completed</h3>
+    <p class="count">{{ completed.count }}</p>
+  </div>
+</div>
+{% endblock %}
